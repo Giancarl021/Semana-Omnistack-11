@@ -7,6 +7,7 @@ import heroesImg from '../../assets/heroes.png';
 import api from '../../services/api';
 
 import { FiLogIn } from 'react-icons/fi';
+import swal from "sweetalert";
 
 function Logon(props) {
     const _id = (props.location.state && props.location.state.id) || '';
@@ -22,8 +23,8 @@ function Logon(props) {
             localStorage.setItem('ongName', response.data.name);
             history.push('/profile');
         } catch (err) {
-            alert('Falha no login, tente novamente');
             console.log(err);
+            await swal('Falha no login', 'Tente novamente', 'error');
         }
     }
 

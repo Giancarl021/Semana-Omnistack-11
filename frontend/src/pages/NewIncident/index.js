@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
@@ -6,8 +6,9 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
-function NewIncident() {
+import swal from 'sweetalert';
 
+function NewIncident() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [value, setValue] = useState('');
@@ -18,7 +19,14 @@ function NewIncident() {
 
     async function handleNewIncident(e) {
         e.preventDefault();
-        const data = {title, description, value};
+        const data = { title, description, value };
+
+        for (const [, value] of Object.entries(data)) {
+            if (!value) {
+                await swal('Erro', 'Todos os campos devem ser preenchidos', 'error');
+                return;
+            }
+        }
 
         try {
             await api.post('incidents', data, {
@@ -26,10 +34,11 @@ function NewIncident() {
                     'Authorization': ongId
                 }
             });
+            await swal('Cadastro realizado com sucesso', '', 'success');
             history.push('/profile');
         } catch (err) {
             console.log(err);
-            alert('Erro ao cadastrar novo caso, por favor tente novamente');
+            await swal('Erro ao cadastrar novo caso', 'Por favor tente novamente');
         }
     }
 
@@ -48,10 +57,13 @@ function NewIncident() {
                     </Link>
                 </section>
                 <form>
-                    <input type="text" placeholder="Título do caso"  onChange={e => setTitle(e.target.value)} value={title}/>
-                    <textarea placeholder="Descrição" onChange={e => setDescription(e.target.value)} value={description} />
+                    <input type="text" placeholder="Título do caso" onChange={e => setTitle(e.target.value)}
+                           value={title}/>
+                    <textarea placeholder="Descrição" onChange={e => setDescription(e.target.value)}
+                              value={description}/>
 
-                    <input type="text" placeholder="Valor em Reais" onChange={e => setValue(e.target.value)} value={value} />
+                    <input type="text" placeholder="Valor em Reais" onChange={e => setValue(e.target.value)}
+                           value={value}/>
 
                     <button type="submit" className="button" onClick={handleNewIncident}>Cadastrar</button>
                 </form>

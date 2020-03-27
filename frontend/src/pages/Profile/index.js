@@ -8,6 +8,7 @@ import { FiPower, FiTrash2 } from 'react-icons/fi';
 import api from '../../services/api';
 
 import './styles.css';
+import swal from "sweetalert";
 
 function Profile() {
 
@@ -38,7 +39,7 @@ function Profile() {
             });
             setIncidents(incidents.filter(incident => incident.id !== id));
         } catch (err) {
-            alert('Erro ao deletar caso, por favor tente novamente');
+            swal('Erro ao deletar caso', 'Por favor tente novamente', 'error');
         }
     }
 

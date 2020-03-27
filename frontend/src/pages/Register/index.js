@@ -7,6 +7,8 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 
+import swal from 'sweetalert';
+
 function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,16 +20,23 @@ function Register() {
 
     async function handleRegister(e) {
         e.preventDefault();
-
         const data = { name, email, city, whatsapp, uf };
+
+        for(const [, value] of Object.entries(data)) {
+            if(!value) {
+                await swal('Erro', 'Todos os campos devem ser preenchidos', 'error');
+                return;
+            }
+        }
+
         try {
             const response = await api.post('ongs', data);
             const { id } = response.data;
-            alert(`Seu ID: ${id}`);
+            await swal('Cadastro bem-sucedido', `Seu ID: ${id}`, 'success');
             history.push('/', { id });
         } catch (err) {
             console.log(err);
-            alert(`Erro: ${err.message}`);
+            await swal('Erro', err.message, 'error');
         }
     }
 
@@ -46,12 +55,15 @@ function Register() {
                     </Link>
                 </section>
                 <form>
-                    <input type="text" placeholder="Nome da ONG" value={name} onChange={e => setName(e.target.value)}/>
-                    <input type="email" placeholder="E-Mail" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <input type="text" placeholder="Nome da ONG" value={name} onChange={e => setName(e.target.value)}
+                           />
+                    <input type="email" placeholder="E-Mail" value={email} onChange={e => setEmail(e.target.value)}
+                          />
                     <input type="text" placeholder="WhatsApp" value={whatsapp}
-                           onChange={e => setWhatsapp(e.target.value)}/>
+                           onChange={e => setWhatsapp(e.target.value)} />
                     <div className="input-group">
-                        <input type="text" placeholder="Cidade" value={city} onChange={e => setCity(e.target.value)}/>
+                        <input type="text" placeholder="Cidade" value={city} onChange={e => setCity(e.target.value)}
+                               />
                         <input type="text" placeholder="UF" style={{ width: 80 }} value={uf}
                                onChange={e => setUf(e.target.value)}/>
                     </div>
