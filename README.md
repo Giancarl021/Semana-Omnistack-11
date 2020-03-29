@@ -222,3 +222,12 @@ Desenvolvido em [ReactJS](https://pt-br.reactjs.org/), é a interface gráfica n
 ![](docs/front-new-incident.png)
 
 ### Mobile
+Desenvolvido em [ReactJS](https://pt-br.reactjs.org/), é a interface gráfica na qual pessoas utilizarão para contribuir com casos de todas as ONGs da plataforma. Trabalha com 2 telas, sendo elas:
+
+#### Home
+
+![](docs/mobile-home.png)
+
+#### Detalhes de Caso
+
+![](docs/mobile-detail.png)
