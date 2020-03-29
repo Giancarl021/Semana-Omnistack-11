@@ -171,17 +171,11 @@ O cabeçalho ``Authorization`` precisa conter o ``id`` da ONG.
 ```
 BODY: [
     {
-        "id": "0",
-        "name": "nome",
-        "email": "email@email.com",
-        "whatsapp": "+55000000000",
-        "city": "cidade",
-        "uf": "XX",
+        "id": 0,
         "title": "título",
         "description": "descrição",
         "value": 0,
-        "ong_id": "00000000",
-        "whatsapp": "+55000000000"
+        "ong_id": "00000000"
     },
     ...
 ]
@@ -199,5 +193,32 @@ Desenvolvido em [ReactJS](https://pt-br.reactjs.org/), é a interface gráfica n
 ##### Imagem
 
 ![](docs/front-login.png)
+
+#### Cadastro
+
+##### Endereço
+``/register``
+
+##### Imagem
+
+![](docs/front-register.png)
+
+#### Gerenciamento de Casos
+
+##### Endereço
+``/profile``
+
+##### Imagem
+
+![](docs/front-profile.png)
+
+#### Cadastro de Caso
+
+##### Endereço
+``/incidents/new``
+
+##### Imagem
+
+![](docs/front-new-incident.png)
 
 ### Mobile
