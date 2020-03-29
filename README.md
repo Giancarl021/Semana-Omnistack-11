@@ -226,8 +226,8 @@ Desenvolvido em [ReactJS](https://pt-br.reactjs.org/), é a interface gráfica n
 
 #### Home
 
-![](docs/mobile-home.png)
+![](docs/mobile-home.jpg)
 
 #### Detalhes de Caso
 
-![](docs/mobile-detail.png)
+![](docs/mobile-detail.jpg)
