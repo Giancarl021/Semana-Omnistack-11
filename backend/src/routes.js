@@ -7,15 +7,20 @@ const SessionController = require('./controllers/SessionController');
 
 const routes = express.Router();
 
-routes.post('/sessions', SessionController.create);
+const OngValidator = require('./validators/OngValidator');
+const ProfileValidator = require('./validators/ProfileValidator');
+const SessionValidator = require('./validators/SessionValidator');
+const IncidentValidator = require('./validators/IncidentValidator');
+
+routes.post('/sessions', SessionValidator, SessionController.create);
 
 routes.get('/ongs', OngController.index);
-routes.post('/ongs', OngController.create);
+routes.post('/ongs', OngValidator, OngController.create);
 
-routes.get('/profile', ProfileController.index);
+routes.get('/profile', ProfileValidator, ProfileController.index);
 
-routes.get('/incidents', IncidentController.index);
-routes.post('/incidents', IncidentController.create);
-routes.delete('/incidents/:id', IncidentController.delete);
+routes.get('/incidents', IncidentValidator.index, IncidentController.index);
+routes.post('/incidents', IncidentValidator.create, IncidentController.create);
+routes.delete('/incidents/:id', IncidentValidator.delete, IncidentController.delete);
 
 module.exports = routes;
