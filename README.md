@@ -20,12 +20,12 @@ Desenvolvido em [NodeJS](https://nodejs.org/en/), que sustenta uma API RESTful q
 #### Retornar todas as ONGs
 
 ##### Requisição
-```json
+```
 GET /ongs
 ```
 
 ##### Resposta
-```json
+```
 BODY: [
     {
         "id": "00000000",
@@ -42,7 +42,7 @@ BODY: [
 #### Cadastrar Nova ONG
 
 ##### Requisição
-```json
+```
 POST /ongs
 BODY: {
         "id": "00000000",
@@ -55,7 +55,7 @@ BODY: {
 ```
 
 ##### Resposta
-```json
+```
 BODY: {
     "id": "00000000"
 }
@@ -64,13 +64,13 @@ BODY: {
 #### Listar todos os Casos
 
 ##### Requisição
-```json
+```
 GET /incidents?page=<número>
 ```
 Parâmetro ``page`` precisa ser um número, caso ultrapasse o limite de páginas retornará um Array vazio. O valor padrão é ``1``.
 
 ##### Resposta
-```json
+```
 HEADERS: [
     X-Total-Count: 0,
     ...
@@ -98,7 +98,7 @@ O cabeçalho ``X-Total-Count`` representa o total de casos que existem no banco 
 #### Criar um novo Caso
 
 ##### Requisição
-```json
+```
 POST /incidents
 HEADERS: [
     Authorization: "00000000",
@@ -114,7 +114,7 @@ BODY: {
 O cabeçalho ``Authorization`` precisa conter o ``id`` da ONG.
 
 ##### Resposta
-```json
+```
 BODY: {
     "id": 1
 }
@@ -123,7 +123,7 @@ BODY: {
 #### Excluir um Caso
 
 ##### Requisição
-```json
+```
 DELETE /incidents/:id
 HEADERS: [
     Authorization: "00000000",
@@ -134,7 +134,7 @@ O parâmtro ``id`` deve ser o identificador único do caso recebido na criação
 O cabeçalho ``Authorization`` precisa conter o ``id`` da ONG.
 
 ##### Resposta
-```json
+```
 204 No Content
 ```
 
