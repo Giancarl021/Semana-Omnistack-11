@@ -45,13 +45,13 @@ BODY: [
 ```
 POST /ongs
 BODY: {
-        "id": "00000000",
-        "name": "nome",
-        "email": "email@email.com",
-        "whatsapp": "+55000000000",
-        "city": "cidade",
-        "uf": "XX"
-    }
+    "id": "00000000",
+    "name": "nome",
+    "email": "email@email.com",
+    "whatsapp": "+55000000000",
+    "city": "cidade",
+    "uf": "XX"
+}
 ```
 
 ##### Resposta
@@ -78,20 +78,20 @@ HEADERS: [
 
 BODY: [
     {
-            "id": "0",
-            "name": "nome",
-            "email": "email@email.com",
-            "whatsapp": "+55000000000",
-            "city": "cidade",
-            "uf": "XX",
-            "title": "título",
-            "description": "descrição",
-            "value": 0,
-            "ong_id": "00000000",
-            "whatsapp": "+55000000000"
-        },
-        ...
-    ]
+        "id": "0",
+        "name": "nome",
+        "email": "email@email.com",
+        "whatsapp": "+55000000000",
+        "city": "cidade",
+        "uf": "XX",
+        "title": "título",
+        "description": "descrição",
+        "value": 0,
+        "ong_id": "00000000",
+        "whatsapp": "+55000000000"
+    },
+    ...
+]
 ```
 O cabeçalho ``X-Total-Count`` representa o total de casos que existem no banco de dados.
 
@@ -136,6 +136,55 @@ O cabeçalho ``Authorization`` precisa conter o ``id`` da ONG.
 ##### Resposta
 ```
 204 No Content
+```
+
+#### Efetuar Login
+
+##### Requisição
+```
+POST /sessions
+BODY: {
+    "id": "00000000"
+}
+```
+
+##### Resposta
+```
+BODY: {
+    "name": "nome"
+}
+```
+
+#### Listar todos os casos de uma ONG
+
+##### Requisição
+```
+GET /profile
+HEADERS: [
+    Authorization: "00000000",
+    ...
+]
+```
+O cabeçalho ``Authorization`` precisa conter o ``id`` da ONG.
+
+##### Resposta
+```
+BODY: [
+    {
+        "id": "0",
+        "name": "nome",
+        "email": "email@email.com",
+        "whatsapp": "+55000000000",
+        "city": "cidade",
+        "uf": "XX",
+        "title": "título",
+        "description": "descrição",
+        "value": 0,
+        "ong_id": "00000000",
+        "whatsapp": "+55000000000"
+    },
+    ...
+]
 ```
 
 ### Front-End
